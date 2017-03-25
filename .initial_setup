@@ -17,7 +17,7 @@ service ssh restart
 usermod -s /bin/bash rik
 
 # basics
-sudo apt-get install -y build-essential tmux wget curl git
+sudo apt-get install -y build-essential tmux wget curl git nano
 
 # node
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
@@ -47,3 +47,8 @@ sudo apt-get install -y gitlab-ci-multi-runner
 
 # mosh
 sudo apt-get install mosh
+
+# git
+git config --global user.name "Richard Smith-Unna"
+git config --global user.email rik@fathomlabs.io
+git config --global core.editor nano

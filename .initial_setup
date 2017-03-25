@@ -61,3 +61,10 @@ yarn config set yarn-offline-mirror ./npm-packages-offline-cache
 yarn config set no-progress true
 yarn config set ignore-optional true
 yarn config set prefer-offline true
+
+# dotfiles
+git clone https://github.com/blahah/dotfiles.git .dotfiles
+for DOTFILE in `find /Users/lars/Projects/.dotfiles`
+do
+  [ -f “$DOTFILE” ] && ln -sv “$DOTFILE” ~
+done

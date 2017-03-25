@@ -43,7 +43,7 @@ sudo apt-get install -y docker-ce
 
 # gitlab-ci
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
-sudo apt-get install -y gitlab-ci-multi-runner
+sudo apt-get update -y && sudo apt-get install -y gitlab-ci-multi-runner
 
 # mosh
 sudo apt-get install mosh
@@ -52,3 +52,12 @@ sudo apt-get install mosh
 git config --global user.name "Richard Smith-Unna"
 git config --global user.email rik@fathomlabs.io
 git config --global core.editor nano
+
+# yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update -y && sudo apt-get install -y yarn
+yarn config set yarn-offline-mirror ./npm-packages-offline-cache
+yarn config set no-progress true
+yarn config set ignore-optional true
+yarn config set prefer-offline true

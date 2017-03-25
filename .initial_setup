@@ -1,0 +1,49 @@
+
+
+apt-get update -y
+
+# setup non-root sudo user, enable SSH access and disable password access
+adduser --system --group rik
+mkdir /home/rik/.ssh
+chmod 0700 /home/rik/.ssh/
+cp -Rfv /root/.ssh /home/rik/
+chown -Rfv rik.rik /home/rik/.ssh
+chown -R rik:rik /home/rik/
+
+# give sudo powers, don't require password for sudo
+gpasswd -a rik sudo
+echo "rik ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+service ssh restart
+usermod -s /bin/bash rik
+
+# basics
+sudo apt-get install -y build-essential tmux wget curl git
+
+# node
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+nvm install 6
+nvm alias default 6
+nvm use default
+
+# docker
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update -y
+sudo apt-get install -y docker-ce
+
+# gitlab-ci
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
+sudo apt-get install -y gitlab-ci-multi-runner
+
+# mosh
+sudo apt-get install mosh

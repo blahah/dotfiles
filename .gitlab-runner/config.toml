@@ -1,0 +1,9 @@
+concurrent = 1 check_interval = 0 [[runners]]
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "node:6"
+    privileged = false
+    disable_cache = false
+    volumes = ["/cache"]
+  [runners.cache]

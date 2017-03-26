@@ -8,3 +8,5 @@ export NVM_DIR="$HOME/.nvm"
 # aliases
 alias ls="ls -alh --color"
 
+
+export PATH="$HOME/.yarn/bin:$PATH"

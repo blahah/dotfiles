@@ -64,6 +64,11 @@ yarn config set no-progress true
 yarn config set ignore-optional true
 yarn config set prefer-offline true
 
+# node-gyp
+sudo apt-get install python2.7 -y
+npm config set python `which python2.7`
+npm install -g node-gyp
+
 # dotfiles
 git clone https://github.com/blahah/dotfiles.git .dotfiles
 for DOTFILE in `find /Users/lars/Projects/.dotfiles`

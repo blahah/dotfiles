@@ -40,6 +40,7 @@ sudo add-apt-repository \
    stable"
 sudo apt-get update -y
 sudo apt-get install -y docker-ce
+sudo usermod -a -G docker rik
 
 # gitlab-ci
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
@@ -52,6 +53,7 @@ sudo apt-get install mosh
 git config --global user.name "Richard Smith-Unna"
 git config --global user.email rik@fathomlabs.io
 git config --global core.editor nano
+git config --global push.default simple
 
 # yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
